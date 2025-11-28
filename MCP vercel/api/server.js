@@ -53,3 +53,6 @@ const httpServer = new HttpServer(server);
 export default function handler(req, res) {
   httpServer.handleHttp(req, res);
 }
+
+console.log("SUPABASE_URL is:", process.env.SUPABASE_URL);
+console.log("SUPABASE_KEY is:", process.env.SUPABASE_KEY);
