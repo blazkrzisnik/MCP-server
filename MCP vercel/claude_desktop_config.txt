@@ -1,0 +1,18 @@
+%APPDATA%\Claude\claude_desktop_config.json
+
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "node",
+      "args": [
+        "C:/Users/kalmiahp/Desktop/mcp-sql-server/server.js"
+      ],
+      "env": {
+        "DB_HOST": "localhost",
+        "DB_USER": "root",
+        "DB_PASSWORD": "root123",
+        "DB_NAME": "employees"
+      }
+    }
+  }
+}
