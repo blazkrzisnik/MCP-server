@@ -2,15 +2,13 @@
   "schema_version": "v1",
   "name": "sql-mcp-server",
   "version": "1.0.0",
-  "description": "SQL MCP server for employees database.",
+  "description": "MCP server with Supabase integration",
+  "servers": {
+    "http": {
+      "url": "/api/server"
+    }
+  },
   "tools": [
-    { "name": "salaryFor" },
-    { "name": "listEmployees" },
-    { "name": "getSalaryHistory" },
-    { "name": "getAllSalaries" },
-    { "name": "addEmployee" },
-    { "name": "updateSalary" },
-    { "name": "deleteEmployee" },
-    { "name": "executeSQL" }
+    { "name": "listRows" }
   ]
 }
