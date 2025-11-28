@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/mcp.json", "dest": "/public/mcp.json" },
+    { "src": "/api/(.*)", "dest": "/api/$1" }
+  ]
+}
