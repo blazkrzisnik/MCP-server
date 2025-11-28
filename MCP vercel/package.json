@@ -1,13 +1,9 @@
 {
-  "name": "mcp-sql-server",
+  "name": "mcp-server",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "start": "node server.js"
-  },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.23.0",
-    "mysql2": "^3.15.3",
-    "zod": "^4.1.13"
+    "@modelcontextprotocol/sdk": "latest",
+    "@supabase/supabase-js": "latest"
   }
 }
