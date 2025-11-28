@@ -14,7 +14,7 @@ const server = new McpServer({
   version: "1.0.0",
 });
 
-// ========== SQL Tools ==========
+// ========== Sample Tools ==========
 server.registerTool(
   "listEmployees",
   {
@@ -34,16 +34,12 @@ server.registerTool(
   {
     title: "Get Salary for Employee",
     description: "Returns latest salary of an employee",
-    inputSchema: {
-      type: "object",
-      properties: { name: { type: "string" } },
-      required: ["name"]
-    }
+    inputSchema: { type: "object", properties: { name: { type: "string" } }, required: ["name"] }
   },
   async ({ name }) => {
     const { data, error } = await supabase
       .from("salaries")
-      .select("emp_no, salary, from_date, to_date")
+      .select("*")
       .eq("name", name)
       .order("to_date", { ascending: false })
       .limit(1);
