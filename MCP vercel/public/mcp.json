@@ -4,11 +4,10 @@
   "version": "1.0.0",
   "description": "MCP server with Supabase integration",
   "servers": {
-    "http": {
-      "url": "/api/server"
-    }
+    "http": { "url": "/api/server" }
   },
   "tools": [
-    { "name": "listRows" }
+    { "name": "listEmployees" },
+    { "name": "salaryFor" }
   ]
 }
