@@ -5,7 +5,7 @@
   "description": "MCP server with Supabase integration",
   "servers": {
     "http": {
-      "url": "https://YOUR-VERCEL-APP.vercel.app/api/server"
+      "url": "https://blazs-projects-3126b41b-APP.vercel.app/api/server"
     }
   },
   "tools": [
@@ -13,3 +13,4 @@
     { "name": "salaryFor" }
   ]
 }
+
