@@ -14,7 +14,7 @@ const server = new McpServer({
   version: "1.0.0",
 });
 
-// ========== Sample Tools ==========
+// ===== TOOLS =====
 server.registerTool(
   "listEmployees",
   {
@@ -24,8 +24,14 @@ server.registerTool(
   },
   async () => {
     const { data, error } = await supabase.from("employees").select("*");
-    if (error) return { content: [{ type: "text", text: `Error: ${error.message}` }] };
-    return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
+    if (error) {
+      return {
+        content: [{ type: "text", text: `Error: ${error.message}` }]
+      };
+    }
+    return {
+      content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
+    };
   }
 );
 
@@ -34,7 +40,11 @@ server.registerTool(
   {
     title: "Get Salary for Employee",
     description: "Returns latest salary of an employee",
-    inputSchema: { type: "object", properties: { name: { type: "string" } }, required: ["name"] }
+    inputSchema: {
+      type: "object",
+      properties: { name: { type: "string" } },
+      required: ["name"]
+    }
   },
   async ({ name }) => {
     const { data, error } = await supabase
@@ -43,15 +53,37 @@ server.registerTool(
       .eq("name", name)
       .order("to_date", { ascending: false })
       .limit(1);
-    if (error) return { content: [{ type: "text", text: `Error: ${error.message}` }] };
-    if (!data.length) return { content: [{ type: "text", text: `Employee not found: ${name}` }] };
-    return { content: [{ type: "text", text: JSON.stringify(data[0], null, 2) }] };
+
+    if (error) {
+      return {
+        content: [{ type: "text", text: `Error: ${error.message}` }]
+      };
+    }
+    if (!data.length) {
+      return {
+        content: [{ type: "text", text: `Employee not found: ${name}` }]
+      };
+    }
+
+    return {
+      content: [{ type: "text", text: JSON.stringify(data[0], null, 2) }]
+    };
   }
 );
 
-// ========== HTTP server ==========
+// HTTP wrapper
 const httpServer = new HttpServer(server);
 
-export default function handler(req, res) {
-  httpServer.handleHttp(req, res);
+// ========== Vercel API Handler ==========
+export default async function handler(req, res) {
+  // Required for CORS (important!)
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  return httpServer.handleHttp(req, res);
 }
