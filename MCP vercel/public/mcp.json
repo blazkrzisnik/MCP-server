@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "description": "MCP server with Supabase integration",
   "servers": {
-    "http": { "url": "/api/server" }
+    "http": {
+      "url": "https://YOUR-VERCEL-APP.vercel.app/api/server"
+    }
   },
   "tools": [
     { "name": "listEmployees" },
